@@ -15,4 +15,5 @@ git add .
 git commit -m "Build static files $CURRENT_DATE"
 git push $REMOTE_PATH gh-pages
 cd ..
-rm -rf dist
+git checkout master
+git pull
