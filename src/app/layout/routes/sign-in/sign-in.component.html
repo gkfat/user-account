@@ -1,0 +1,139 @@
+<div class="login-page container-fluid">
+
+  <div class="login-modal bg-light shadow">
+    <h3 class="h3 text-center mb-5">{{ 'TITLE' | translate }}</h3>
+    
+    <div class="form-group mb-3">
+
+      <!-- 登入 -->
+      <ng-container *ngIf="pageState === 0">
+        <div class="flex-form-group mb-5">
+          <input matInput class="form-control" type="search" autocomplete="off"
+                placeholder="{{ 'PLACEHOLDER.ENTER_EMAIL' | translate }}" [(ngModel)]="signInAccountInput.Email">
+
+          <input matInput class="form-control" type="password" autocomplete="off"
+                placeholder="{{ 'PLACEHOLDER.ENTER_PASSWORD' | translate }}" [(ngModel)]="signInAccountInput.Password">
+        </div>
+
+        <button type="button" class="btn btn-lg btn-green text-white w-100 py-3 mb-3" (click)="signIn()">
+          {{ 'ACCOUNT.SIGN_IN' | translate }}
+        </button>
+      </ng-container>
+
+
+      <!-- 註冊 -->
+      <ng-container *ngIf="pageState === 1">
+        <form class="flex-form-group mb-3" [formGroup]="signUpForm">
+          <!-- 輸入信箱 -->
+          <div class="w-100">
+            <input matInput class="form-control" type="search" autocomplete="off" formControlName="Email"
+                [class]="{ 'input-error': getFormControl().Email.errors }"
+                placeholder="{{ 'PLACEHOLDER.ENTER_EMAIL' | translate }}">
+            <small class="text-red" *ngIf="getFormControl().Email.hasError('required')">
+                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+            </small>
+            <small class="text-red" *ngIf="getFormControl().Email.hasError('email')">
+                {{ 'WARNING.INVALID_EMAIL_FORMAT' | translate }}
+            </small>
+          </div>
+          <!-- 輸入名字 -->
+          <div class="w-100">
+            <input matInput class="form-control" type="search" autocomplete="off" formControlName="FirstName"
+                [class]="{ 'input-error': getFormControl().FirstName.errors }"
+                placeholder="{{ 'PLACEHOLDER.ENTER_FIRSTNAME' | translate }}">
+            <small class="text-red" *ngIf="getFormControl().FirstName.hasError('required')">
+                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+            </small>
+          </div>
+          <!-- 輸入姓氏 -->
+          <div class="w-100">
+            <input matInput class="form-control" type="search" autocomplete="off" formControlName="LastName"
+                [class]="{ 'input-error': getFormControl().LastName.errors }"
+                placeholder="{{ 'PLACEHOLDER.ENTER_LASTNAME' | translate }}">
+            <small class="text-red" *ngIf="getFormControl().LastName.hasError('required')">
+                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+            </small>
+          </div>
+          <!-- 輸入電話 -->
+          <div class="w-100">
+            <input matInput class="form-control" type="search" autocomplete="off" formControlName="PhoneNumber"
+                [class]="{ 'input-error': getFormControl().PhoneNumber.errors }"
+                placeholder="{{ 'PLACEHOLDER.ENTER_PHONENUMBER' | translate }}">
+            <small class="text-red" *ngIf="getFormControl().PhoneNumber.hasError('required')">
+                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+            </small>
+          </div>
+          <!-- 選擇生日 -->
+          <div class="w-100 date-picker-group">
+            <span class="text-nowrap">{{ 'PLACEHOLDER.SELECT_BIRTHDATE' | translate }}</span>
+            <input matInput class="form-control" type="search" autocomplete="off" [matDatepicker]="picker" formControlName="BirthDate"
+                placeholder="{{ 'PLACEHOLDER.SELECT_BIRTHDATE' | translate }}">
+            <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false" touchUi="true"></mat-datepicker>
+          </div>
+          <!-- 輸入新密碼 -->
+          <div class="w-100">
+            <input matInput class="form-control" type="search" autocomplete="off" formControlName="Password"
+                [class]="{ 'input-error': getFormControl().Password.errors }"
+                placeholder="{{ 'PLACEHOLDER.ENTER_PASSWORD' | translate }}">
+            <small class="text-red" *ngIf="getFormControl().Password.hasError('required')">
+                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+            </small>
+            <small class="text-red" *ngIf="getFormControl().Password.hasError('pattern')">
+                {{ 'WARNING.INVALID_PASSWORD_FORMAT' | translate }}
+            </small>
+          </div>
+          <!-- 再次輸入新密碼 -->
+          <div class="w-100">
+            <input matInput class="form-control" type="search" autocomplete="off" formControlName="PasswordConfirm"
+                [class]="{ 'input-error': getFormControl().PasswordConfirm.errors }"
+                placeholder="{{ 'PLACEHOLDER.ENTER_PASSWORD_CONFIRM' | translate }}">
+            <small class="text-red" *ngIf="getFormControl().PasswordConfirm.hasError('required')">
+                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+            </small>
+            <small class="text-red" *ngIf="!validations.confirmPassword">
+                {{ 'WARNING.NOT_SAME_WITH_NEW_PASSWORD' | translate }}
+            </small>
+          </div>
+        </form>
+            
+        <button type="button" class="btn btn-lg btn-green text-white w-100 py-3 mb-3"
+                [disabled]="signUpForm.invalid || !validations.confirmPassword" (click)="signUp()">
+          {{ 'ACCOUNT.SIGN_UP' | translate }}
+        </button>
+      </ng-container>
+
+
+      <!-- 重置密碼 -->
+      <ng-container *ngIf="pageState === 2">
+        <div class="flex-form-group mb-5">
+          <input matInput class="form-control" type="search" autocomplete="off"
+                placeholder="{{ 'PLACEHOLDER.ENTER_EMAIL' | translate }}" [(ngModel)]="resetPasswordInput.Email">
+        </div>
+
+        <button type="button" class="btn btn-lg btn-green text-white w-100 py-3 mb-3" (click)="resetPassword()">
+          {{ 'MODEL.RESET' | translate }}{{ 'ACCOUNT.PASSWORD' | translate }}
+        </button>
+      </ng-container>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="d-flex justify-content-between">
+      <p type="button" class="btn btn-link-blue w-100 text-center m-0 p-0 text-decoration-none"
+          *ngIf="pageState !== 0" (click)="changePageState(0)">
+          {{ 'ACCOUNT.SIGN_IN' | translate }}
+      </p>
+      <p type="button" class="btn btn-link-blue w-100 text-center m-0 p-0 text-decoration-none"
+          *ngIf="pageState !== 1" (click)="changePageState(1)">
+          {{ 'ACCOUNT.SIGN_UP' | translate }}
+      </p>
+      <p type="button" class="btn btn-link-blue w-100 text-center m-0 p-0 text-decoration-none"
+          *ngIf="pageState !== 2" (click)="changePageState(2)">
+          {{ 'MODEL.RESET' | translate }}{{ 'ACCOUNT.PASSWORD' | translate }}
+      </p>
+    </div>
+  </div>
+
+</div>

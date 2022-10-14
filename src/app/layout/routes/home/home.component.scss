@@ -1,0 +1,14 @@
+@import 'src/assets/styles/styles';
+
+.home {
+  &-page {
+    padding: 60px 0 100px;
+    background-color: $dark;
+    height: 100%;
+
+    .account-set {
+      width: 300px;
+      margin: 0 auto;
+    }
+  }
+}

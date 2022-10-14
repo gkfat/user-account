@@ -1,0 +1,102 @@
+<div class="account-page container-fluid" *ngIf="account">
+    
+    <div class="profile col-11 col-sm-8 col-md-6 mx-auto">
+        <div class="avatar-group d-flex justify-content-center flex-wrap mb-3" type="button"
+                [ngClass]="{ 'on-hover': onHovering }"
+                (mouseenter)="onHover(true)" (mouseleave)="onHover(false)"
+                (click)="clickSelectFile()">
+            <div class="avatar-frame shadow">
+                <div class="avatar" *ngIf="avatarImg === ''"></div>
+                <img class="img-fluid" *ngIf="avatarImg !== ''" [src]="sanitizer.bypassSecurityTrustResourceUrl(avatarImg)">
+                <input class="invisible" #selectFileInput type="file" (change)="selectFile($event)" accept=".png,.jpg,.jpeg">
+            </div>
+            <div class="icon-container shadow">
+                <div class="icon icon-edit"></div>
+            </div>
+        </div>
+        <div class="mb-5">
+            <h3 class="text-center">
+                {{ account.FirstName }} {{ account.LastName }}
+            </h3>
+        </div>
+
+        <ul ngbNav #nav="ngbNav" class="nav-tabs mb-3">
+            <li class="nav-item" ngbNavItem>
+                <a class="nav-link" ngbNavLink>
+                    {{ 'ACCOUNT.PROFILE' | translate }}
+                </a>
+                <ng-template ngbNavContent>
+                    <label class="text-mediumgray mb-1">ID</label>
+                    <input matInput class="form-control h5 mb-3" type="search" autocomplete="off" [(ngModel)]="account.ID" [disabled]="true">
+        
+                    <label class="text-mediumgray mb-1">Email</label>
+                    <input matInput class="form-control h5 mb-3" type="search" autocomplete="off" [(ngModel)]="account.Email" [disabled]="true">
+        
+                    <label class="text-mediumgray mb-1">PhoneNumber</label>
+                    <input matInput class="form-control h5 mb-3" type="search" autocomplete="off" [(ngModel)]="account.PhoneNumber" [disabled]="true">
+        
+                    <label class="text-mediumgray mb-1">BirthDate</label>
+                    <div class="date-picker-group w-100">
+                        <input matInput class="form-control" type="search" autocomplete="off" [matDatepicker]="picker"
+                                placeholder="{{ 'PLACEHOLDER.SELECT_BIRTHDATE' | translate }}" [(ngModel)]="account.BirthDate" [disabled]="true">
+                        <mat-datepicker-toggle [for]="picker" matSuffix [disabled]="true"></mat-datepicker-toggle>
+                        <mat-datepicker #picker disabled="false" touchUi="true"></mat-datepicker>
+                    </div>
+                </ng-template>
+            </li>
+            <li class="nav-item" ngbNavItem>
+                <a class="nav-link" ngbNavLink>
+                    {{ 'MODEL.CHANGE' | translate }}{{ 'ACCOUNT.PASSWORD' | translate }}
+                </a>
+                <ng-template ngbNavContent>
+                    <form class="flex-form-group mb-3" [formGroup]="changePasswordForm">
+                        <!-- 輸入舊密碼 -->
+                        <div class="w-100">
+                            <input matInput class="form-control" type="search" autocomplete="off" formControlName="OldPassword"
+                                [class]="{ 'input-error': getFormControl().OldPassword.errors }"
+                                placeholder="{{ 'PLACEHOLDER.ENTER_PASSWORD' | translate }}">
+                            <small class="text-red" *ngIf="getFormControl().OldPassword.hasError('required')">
+                                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+                            </small>
+                        </div>
+                        <!-- 輸入新密碼 -->
+                        <div class="w-100">
+                            <input matInput class="form-control" type="search" autocomplete="off" formControlName="NewPassword"
+                                [class]="{ 'input-error': getFormControl().NewPassword.errors }"
+                                placeholder="{{ 'PLACEHOLDER.ENTER_NEW_PASSWORD' | translate }}">
+                            <small class="text-red" *ngIf="getFormControl().NewPassword.hasError('required')">
+                                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+                            </small>
+                            <small class="text-red" *ngIf="getFormControl().NewPassword.hasError('pattern')">
+                                {{ 'WARNING.INVALID_PASSWORD_FORMAT' | translate }}
+                            </small>
+                            <small class="text-red" *ngIf="!validations.usablePassword">
+                                {{ 'WARNING.SAME_WITH_OLD_PASSWORD' | translate }}
+                            </small>
+                        </div>
+                        <!-- 再次輸入新密碼 -->
+                        <div class="w-100">
+                            <input matInput class="form-control" type="search" autocomplete="off" formControlName="NewPasswordConfirm"
+                                [class]="{ 'input-error': getFormControl().NewPasswordConfirm.errors }"
+                                placeholder="{{ 'PLACEHOLDER.ENTER_NEW_PASSWORD_CONFIRM' | translate }}">
+                            <small class="text-red" *ngIf="getFormControl().NewPasswordConfirm.hasError('required')">
+                                {{ 'WARNING.FIELD_REQUIRED' | translate }}
+                            </small>
+                            <small class="text-red" *ngIf="!validations.confirmPassword">
+                                {{ 'WARNING.NOT_SAME_WITH_NEW_PASSWORD' | translate }}
+                            </small>
+                        </div>
+                    </form>
+                                
+                    <button type="button" class="btn btn-lg w-100 btn-yellow text-white"
+                            [disabled]="changePasswordForm.invalid || !validations.confirmPassword || !validations.usablePassword" (click)="changePassword()">
+                        {{ 'MODEL.CHANGE' | translate }}{{ 'ACCOUNT.PASSWORD' | translate }}
+                    </button>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div class="px-3" [ngbNavOutlet]="nav"></div>
+    </div>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="home-page container-fluid">
+
+  <div class="col-11 col-md-8 col-lg-6 mx-auto">
+    <h1 class="text-center text-light">
+      {{ 'TITLE' | translate }}
+    </h1>
+
+    <p class="text-center text-lightgray">
+      {{ 'HOME.WELCOME_1' | translate }}<br>
+      {{ 'HOME.WELCOME_2' | translate }}<br>
+      {{ 'HOME.WELCOME_3' | translate }}
+    </p>
+
+    <div class="table-responsive mb-3">
+      <table class="table table-light">
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of testAccounts">
+            <td class="text-wrap">{{ account.Email }}</td>
+            <td class="text-wrap">{{ account.Password }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <a class="icon-container icon-container-lg" href="https://github.com/gkfat/user-account" target="_blank">
+      <div class="icon icon-github icon-github-light mb-1"></div>
+      <span class="w-100 text-center text-light">Github</span>
+    </a>
+
+  </div>
+
+</div>

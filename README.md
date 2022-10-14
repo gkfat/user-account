@@ -1,27 +1,16 @@
-# UserAccount
+# Account Systen
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
+本專案為處理使用者帳號相關功能的介面，包含下列功能：
+* 帳號相關功能：註冊、登入、重置密碼、變更密碼、更換圖片...等
+* 表單驗證：Angular Reactive Form / Validators / Date Picker
+* i18n 多語系：zh-TW / en
+* 模擬 API 處理資料
 
-## Development server
+## Run project
+* 開發環境與依賴：`NPM 8` `Node 17` `Angular 13` `TypeScript 4` `Bootstrap 5` `RxJS 7` `Karma 6`
+* 於專案資料夾執行 `npm install` 下載相依套件。
+* 執行 `npm run start`，專案將於 `http://localhost:4200/` 啟動。
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Credits
+* Author: gkfat
+* Contact: gkgkdesign@gmail.com

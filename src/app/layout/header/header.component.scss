@@ -1,0 +1,20 @@
+@import 'src/assets/styles/styles';
+
+.navbar {
+    .nav-item, .nav-link {
+        padding-top: 0;
+        padding-bottom: 0;
+        @media screen and(max-width:768px) {
+            text-align: center;
+            border-bottom: 1px solid $lightgray;
+            justify-content: center;
+          }
+    }
+    .dropdown-menu {
+        @media screen and(max-width:768px) {
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+}

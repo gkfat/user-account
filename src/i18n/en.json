@@ -1,0 +1,56 @@
+{
+    "TITLE": "Account System",
+    "MENU": {
+        "HOME": "Home"
+    },
+    "HOME": {
+        "WELCOME_1": "Welcome to Account System, it's a front-end project.",
+        "WELCOME_2": "Please try out for sign up, sign in, reset password and extra.",
+        "WELCOME_3": "Try successfully sign in, use following accounts:"
+    },
+    "ACCOUNT": {
+        "PROFILE": "Profile",
+        "SIGN_UP": "Sign up",
+        "SIGN_IN": "Sign in",
+        "SIGN_OUT": "Sign out",
+        "EMAIL": "Email",
+        "PASSWORD": "Password"
+    },
+    "MODEL": {
+        "ENTER": "Enter",
+        "TEXT": "text",
+        "SUBMIT": "Submit",
+        "CANCEL": "Cancel",
+        "CHANGE": "Change",
+        "RESET": "Reset",
+        "CONFIRM": "Confirm"
+    },
+    "PLACEHOLDER": {
+        "ENTER_EMAIL": "Enter email.",
+        "ENTER_PASSWORD": "Enter password.",
+        "ENTER_PASSWORD_CONFIRM": "Enter password again.",
+        "ENTER_NEW_PASSWORD": "Enter new password.",
+        "ENTER_NEW_PASSWORD_CONFIRM": "Enter new password again.",
+        "SELECT_BIRTHDATE": "Select birthdate.",
+        "ENTER_PHONENUMBER": "Enter phone number.",
+        "ENTER_FIRSTNAME": "Enter first name.",
+        "ENTER_LASTNAME": "Enter last name."
+    },
+    "WARNING": {
+        "INVALID_EMAIL_FORMAT": "* Invalid email format.",
+        "INVALID_PASSWORD_FORMAT": "* Invalid password format, must contain at least 1 letter and 1 number, 4-8 characters.",
+        "FIELD_REQUIRED": "* Field required.",
+        "SAME_WITH_OLD_PASSWORD": "* Must not be same as old password",
+        "NOT_SAME_WITH_NEW_PASSWORD": "* New password reapeated incorrectly"
+    },
+    "ALERT": {
+        "SIGN_UP_SUCCESS": "Successfully signed up! Please sign in.",
+        "CONFIRM_RESET_PASSWORD": "Confirm reset password?",
+        "RESET_PASSWORD_SUCCESS": "Successfully reset password and mailed to your mailbox.",
+        "CHANGE_PASSWORD_SUCCESS": "Successfully changed password.",
+        "UNKNOWN_ERROR": "Unknown error.",
+        "EMAIL_BE_USED": "Email already be used.",
+        "ACCOUNT_NOT_SIGN_UP": "Email not registerd.",
+        "PASSWORD_INCORRECT": "Incorrect password."
+    }
+}
